@@ -32,9 +32,14 @@ export const App = () => {
   
 
   const handleSubmit = (values, { resetForm }) => {
-    const { contacts,number, name } = values; 
+    const {number, name } = values; 
 
 
+     const newContact = {
+      name: name,
+      number: number,
+      id: nanoid(),
+    }
     if (contacts.find((contact) => contact.name.toLowerCase() === newContact.name.toLowerCase())) {
       toast.error(`${name} already exists.`)
       resetForm()
@@ -42,11 +47,7 @@ export const App = () => {
     } 
 
      
-    const newContact = {
-      name: name,
-      number: number,
-      id: nanoid(),
-    }
+   
 
     setContacts(prevS => [...prevS, newContact])
     
